@@ -13,18 +13,11 @@ swap_size_mb = 2048
 [env]
   NODE_ENV = 'production'
   NODE_OPTIONS = '--max-old-space-size=1536'
-  OPENCLAW_GATEWAY_CONTROLUI_ALLOWEDORIGINS = '["https://openclaw-brillant.fly.dev"]'
-  OPENCLAW_GATEWAY_TRUSTEDPROXIES = '["172.16.0.0/12"]'
   OPENCLAW_PREFER_PNPM = '1'
   OPENCLAW_STATE_DIR = '/data'
 
 [processes]
   app = 'node dist/index.js gateway --allow-unconfigured --port 3000 --bind lan'
-
-[[mounts]]
-  source = 'openclaw_data'
-  destination = '/data'
-  initial_size = '3gb'
 
 [http_service]
   internal_port = 3000
@@ -34,13 +27,11 @@ swap_size_mb = 2048
   min_machines_running = 1
   processes = ['app']
 
-  [[http_service.checks]]
-    interval = '15s'
-    timeout = '10s'
-    grace_period = '3m0s'
-    method = 'GET'
-    path = '/'
-
 [[vm]]
   size = 'shared-cpu-2x'
   memory = '2048mb'
+
+[[mounts]]
+  source = 'openclaw_data'
+  destination = '/data'
+  initial_size = '3gb'
