@@ -22,7 +22,7 @@ swap_size_mb = 2048
 [[mounts]]
   source = 'openclaw_data'
   destination = '/data'
-  initial_size = '3gb'
+  initial_size = '5gb'
 
 [http_service]
   internal_port = 3000
