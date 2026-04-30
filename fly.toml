@@ -33,3 +33,4 @@ primary_region = 'iad'
 [[vm]]
   size = 'shared-cpu-2x'
   memory = '2048mb'
+  swap_size_mb = 2048
