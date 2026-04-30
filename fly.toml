@@ -1,4 +1,4 @@
-# fly.toml app configuration file generated for openclaw-brillant on 2026-04-30T02:13:02Z
+# fly.toml app configuration file generated for openclaw-brillant on 2026-04-30T12:29:53Z
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
@@ -19,6 +19,11 @@ swap_size_mb = 2048
 [processes]
   app = 'node dist/index.js gateway --allow-unconfigured --port 3000 --bind lan'
 
+[[mounts]]
+  source = 'openclaw_data'
+  destination = '/data'
+  initial_size = '3gb'
+
 [http_service]
   internal_port = 3000
   force_https = true
@@ -30,8 +35,3 @@ swap_size_mb = 2048
 [[vm]]
   size = 'shared-cpu-2x'
   memory = '2048mb'
-
-[[mounts]]
-  source = 'openclaw_data'
-  destination = '/data'
-  initial_size = '3gb'
